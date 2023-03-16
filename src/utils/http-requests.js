@@ -27,3 +27,5 @@ async function executeRequestCallbacks(request, callbacks) {
 async function getData(requestUrl, callbacks) {
 	await executeRequestCallbacks(axios.get(requestUrl), callbacks)
 }
+
+export { getData }
