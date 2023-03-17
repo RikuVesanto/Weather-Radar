@@ -1,0 +1,14 @@
+.weatherInfo {
+	font-size: 13pt;
+	color: #70757a;
+}
+
+.cityName {
+	font-size: 19pt;
+	color: #262626;
+}
+
+.temperature {
+	font-size: 26pt;
+	color: #262626;
+}
