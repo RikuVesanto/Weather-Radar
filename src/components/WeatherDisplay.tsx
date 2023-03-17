@@ -1,4 +1,5 @@
 import React, { FC } from 'react'
+import { getWeatherIcon } from '../utils/general-functions'
 
 interface weatherProps {
 	weather: {
@@ -7,13 +8,14 @@ interface weatherProps {
 		humidity: number
 		windSpeed: number
 		rain: number
-		icon: string
+		iconId: string
 	}
 }
 
 const WeatherDisplay: FC<weatherProps> = ({ weather }) => {
 	return (
 		<div>
+			<img src={getWeatherIcon(weather.iconId)} alt="Weather icon"></img>
 			<p>{weather.name}</p>
 			<p>{weather.temperature} </p> <p>°C</p>
 			<p>{weather.windSpeed} m/s</p>
