@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import * as dotenv from 'dotenv'
 import { getData } from './utils/http-requests'
-
-dotenv.config({ path: 'src/development.env' })
 
 function App() {
 	useEffect(() => {
@@ -11,7 +8,7 @@ function App() {
 
 	async function getCurrentWeather(lat: String, lon: String) {
 		return await getData(
-			`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.API_KEY}`,
+			`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`,
 			{
 				onSuccess: async (response: Object) => {
 					console.log(response)
