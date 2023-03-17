@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getData } from './utils/http-requests'
-import { kelvinToCelsius } from './utils/general-functions'
+import { kelvinToCelsius, getNumbersSuffix } from './utils/general-functions'
 import WeatherDisplay from './components/WeatherDisplay'
 
 function App() {
@@ -17,6 +17,14 @@ function App() {
 				onSuccess: async (response: any) => {
 					console.log(response)
 					const data = response.data
+					const dateTime = new Date(data.dt * 1000)
+					const day = dateTime.getDate()
+					const hour = dateTime.getHours()
+					const minutes = dateTime.getMinutes()
+					const date =
+						dateTime.toLocaleString('default', { month: 'long' }) +
+						' ' +
+						getNumbersSuffix(day)
 					const parsedWeather = {
 						name: data.name,
 						temperature: Math.round(kelvinToCelsius(data.main.temp)),
@@ -24,6 +32,8 @@ function App() {
 						windSpeed: data.wind.speed,
 						rain: data.rain,
 						description: data.weather[0].description,
+						date: date,
+						time: hour + ':' + (minutes < 10 ? '0' + minutes : minutes),
 						iconId: data.weather[0].icon,
 					}
 					setCurrentWeather(parsedWeather)
