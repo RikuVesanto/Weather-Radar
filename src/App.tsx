@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getData } from './utils/http-requests'
+import { kelvinToCelsius } from './utils/math-functions'
 import WeatherDisplay from './components/WeatherDisplay'
 
 function App() {
@@ -17,7 +18,7 @@ function App() {
 					const data = response.data
 					const parsedWeather = {
 						name: data.name,
-						temperature: data.main.temp,
+						temperature: Math.round(kelvinToCelsius(data.main.temp)),
 						humidity: data.main.humidity,
 						windSpeed: data.wind.speed,
 						rain: data.rain,
