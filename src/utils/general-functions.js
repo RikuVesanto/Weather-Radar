@@ -16,4 +16,23 @@ function getWeatherIcon(id) {
 	return `https://openweathermap.org/img/wn/${id}@2x.png`
 }
 
-export { kelvinToCelsius, getWeatherIcon }
+/**
+ * Takes a number and returns it with its suffix
+ * @param {number} number Any number
+ * @return {string} The number with its suffix
+ */
+function getNumbersSuffix(number) {
+	const numberString = number.toString()
+	const lastDigit = numberString[numberString.length - 1]
+	return number === 11 || number === 12 || number === 13
+		? number + 'th'
+		: lastDigit === '1'
+		? number + 'st'
+		: lastDigit === '2'
+		? number + 'nd'
+		: lastDigit === '3'
+		? number + 'rd'
+		: number + 'th'
+}
+
+export { kelvinToCelsius, getWeatherIcon, getNumbersSuffix }
