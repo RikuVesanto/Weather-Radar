@@ -23,8 +23,8 @@ const WeatherDisplay: FC<weatherProps> = ({ weather }) => {
 			<p className="weatherInfo">{weather.description}</p>
 			<img src={getWeatherIcon(weather.iconId)} alt="Weather icon"></img>
 			<p className="temperature">{weather.temperature}°C</p>
-			<p>{weather.date}</p>
-			<p>{weather.time}</p>
+			<p className="date">{weather.date}</p>
+			<p className="weatherInfo">{weather.time}</p>
 			<div className="weatherInfo">
 				<p>{weather.windSpeed} m/s</p>
 				<p>{weather.humidity} %</p>
