@@ -13,8 +13,17 @@ function App() {
 		return await getData(
 			`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`,
 			{
-				onSuccess: async (response: Object) => {
-					setCurrentWeather(response)
+				onSuccess: async (response: any) => {
+					const data = response.data
+					const parsedWeather = {
+						name: data.name,
+						temperature: data.main.temp,
+						humidity: data.main.humidity,
+						windSpeed: data.wind.speed,
+						rain: data.rain,
+						icon: data.weather[0].icon,
+					}
+					setCurrentWeather(parsedWeather)
 				},
 				onError: (error: Error) => {
 					console.log(error)
