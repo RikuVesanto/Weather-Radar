@@ -17,7 +17,7 @@ interface weatherProps {
 }
 
 const WeatherDisplay: FC<weatherProps> = ({ weather }) => {
-	return (
+	return weather ? (
 		<div>
 			<p className="cityName">{weather.name}</p>
 			<p className="weatherInfo">{weather.description}</p>
@@ -31,6 +31,8 @@ const WeatherDisplay: FC<weatherProps> = ({ weather }) => {
 				<p>{weather.rain ? weather.rain : 0} mm</p>
 			</div>
 		</div>
+	) : (
+		<div></div>
 	)
 }
 
