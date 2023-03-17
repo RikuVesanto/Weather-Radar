@@ -9,6 +9,7 @@ interface weatherProps {
 		humidity: number
 		windSpeed: number
 		rain: number
+		description: string
 		iconId: string
 	}
 }
@@ -16,8 +17,9 @@ interface weatherProps {
 const WeatherDisplay: FC<weatherProps> = ({ weather }) => {
 	return (
 		<div>
-			<img src={getWeatherIcon(weather.iconId)} alt="Weather icon"></img>
 			<p className="cityName">{weather.name}</p>
+			<p className="weatherInfo">{weather.description}</p>
+			<img src={getWeatherIcon(weather.iconId)} alt="Weather icon"></img>
 			<p className="temperature">{weather.temperature}°C</p>
 			<div className="weatherInfo">
 				<p>{weather.windSpeed} m/s</p>

@@ -23,6 +23,7 @@ function App() {
 						humidity: data.main.humidity,
 						windSpeed: data.wind.speed,
 						rain: data.rain,
+						description: data.weather[0].description,
 						iconId: data.weather[0].icon,
 					}
 					setCurrentWeather(parsedWeather)
