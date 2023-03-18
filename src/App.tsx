@@ -35,7 +35,7 @@ function App() {
 						name: data.name,
 						temperature: Math.round(kelvinToCelsius(data.main.temp)),
 						humidity: data.main.humidity,
-						windSpeed: data.wind.speed,
+						windSpeed: Number(data.wind.speed).toFixed(1),
 						rain: 'rain' in data ? data.rain['1h'] : 0,
 						description: data.weather[0].description,
 						date: date,
@@ -62,7 +62,7 @@ function App() {
 							new Date(forecast.dt * 1000).getHours().toString() +
 							':00',
 						temperature: Math.round(kelvinToCelsius(forecast.main.temp)),
-						windSpeed: forecast.wind.speed,
+						windSpeed: Number(forecast.wind.speed).toFixed(1),
 						humidity: forecast.main.humidity,
 						rain: 'rain' in forecast ? forecast.rain['1h'] : 0,
 						iconId: forecast.weather[0].icon,
