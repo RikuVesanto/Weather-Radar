@@ -6,6 +6,7 @@ import {
 	getNumbersSuffix,
 } from './utils/general-functions'
 import WeatherDisplay from './components/WeatherDisplay'
+import ThreeHourDisplay from './components/ThreeHourDisplay'
 
 function App() {
 	const [currentWeather, setCurrentWeather] = useState<any>(null)
@@ -70,7 +71,6 @@ function App() {
 					const forecasts = response.data.list
 						.map((forecast: any) => getFiveForecasts(forecast))
 						.filter((forecast: any) => forecast != null)
-					console.log(forecasts)
 					setThreeHourForecasts(forecasts)
 				},
 				onError: (error: Error) => {
@@ -83,6 +83,9 @@ function App() {
 	return (
 		<div className="App">
 			<WeatherDisplay weather={currentWeather} />
+			<ThreeHourDisplay
+				forecast={threeHourForecasts ? threeHourForecasts[0] : null}
+			/>
 		</div>
 	)
 }
