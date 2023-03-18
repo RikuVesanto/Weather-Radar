@@ -7,6 +7,7 @@ import {
 } from './utils/general-functions'
 import WeatherDisplay from './components/WeatherDisplay'
 import ThreeHourDisplay from './components/ThreeHourDisplay'
+import './styles/app.css'
 
 function App() {
 	const [currentWeather, setCurrentWeather] = useState<any>(null)
@@ -83,9 +84,13 @@ function App() {
 	return (
 		<div className="App">
 			<WeatherDisplay weather={currentWeather} />
-			<ThreeHourDisplay
-				forecast={threeHourForecasts ? threeHourForecasts[0] : null}
-			/>
+			<div className="threeHourForecasts">
+				{threeHourForecasts
+					? threeHourForecasts.map((forecast: any) => (
+							<ThreeHourDisplay forecast={forecast} key={forecast.time} />
+					  ))
+					: null}
+			</div>
 		</div>
 	)
 }
