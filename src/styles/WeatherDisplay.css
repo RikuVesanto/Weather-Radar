@@ -35,8 +35,8 @@
 	flex-direction: column;
 	background-color: #ffffff;
 	border-width: 5;
-	border-radius: 5;
-	border-color: #e6e6e6;
+	border-radius: 5px;
+	border: 1pt solid #e6e6e6;
 }
 
 .flexRow {

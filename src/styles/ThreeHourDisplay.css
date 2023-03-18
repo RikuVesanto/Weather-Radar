@@ -1,6 +1,8 @@
 .container {
 	width: 20%;
-	background-color: #a8a8a8;
+	background-color: #ffffff;
+	border-radius: 5px;
+	border: 1pt solid #e6e6e6;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
