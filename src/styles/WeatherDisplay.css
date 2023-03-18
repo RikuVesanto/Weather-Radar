@@ -33,7 +33,7 @@
 .weatherDisplay {
 	display: flex;
 	flex-direction: column;
-	background-color: #000000;
+	background-color: #ffffff;
 	border-width: 5;
 	border-radius: 5;
 	border-color: #e6e6e6;
