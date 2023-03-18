@@ -1,11 +1,15 @@
-.weatherInfo {
-	font-size: 13pt;
-	color: #70757a;
-}
-
 .cityName {
 	font-size: 19pt;
 	color: #262626;
+	margin-left: 10%;
+	margin-top: 10%;
+	margin-bottom: 2pt;
+}
+
+.description {
+	font-size: 13pt;
+	color: #70757a;
+	margin-left: 15%;
 }
 
 .temperature {
@@ -16,4 +20,49 @@
 .date {
 	font-size: 15pt;
 	color: #262626;
+	margin-left: 10%;
+	margin-bottom: 2pt;
+}
+
+.time {
+	font-size: 13pt;
+	color: #70757a;
+	margin-left: 10%;
+}
+
+.weatherDisplay {
+	display: flex;
+	flex-direction: column;
+	background-color: #000000;
+	border-width: 5;
+	border-radius: 5;
+	border-color: #e6e6e6;
+}
+
+.flexRow {
+	display: flex;
+	flex-direction: row;
+}
+
+.bottomRight {
+	font-size: 13pt;
+	color: #70757a;
+	display: flex;
+	flex-direction: column;
+	text-align: right;
+	margin-right: 5%;
+	margin-bottom: 5%;
+}
+
+.topRight {
+	display: flex;
+	flex-direction: row;
+}
+
+.topLeft {
+	width: 50%;
+}
+
+.bottomLeft {
+	width: 40%;
 }
