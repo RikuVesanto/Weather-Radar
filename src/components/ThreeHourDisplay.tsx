@@ -15,10 +15,14 @@ interface forecastProps {
 
 const ThreeHourDisplay: FC<forecastProps> = ({ forecast }) => {
 	return forecast ? (
-		<div>
-			<p className="time">{forecast.time}</p>
-			<img src={getWeatherIcon(forecast.iconId)} alt="Weather icon"></img>
-			<p className="temperature">{forecast.temperature}°C</p>
+		<div className="container">
+			<p className="threeHourTime">{forecast.time}</p>
+			<img
+				className="icon"
+				src={getWeatherIcon(forecast.iconId)}
+				alt="Weather icon"
+			></img>
+			<p className="threeHourTemperature">{forecast.temperature}°C</p>
 			<div className="weatherInfo">
 				<p>{forecast.windSpeed} m/s</p>
 				<p>{forecast.humidity} %</p>

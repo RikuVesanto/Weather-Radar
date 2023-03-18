@@ -1,14 +1,26 @@
-.time {
-	font-size: 13pt;
-	color: #70757a;
+.container {
+	width: 20%;
+	background-color: #a8a8a8;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 
-.temperature {
-	font-size: 15pt;
+.threeHourTime {
+	font-size: 13pt;
 	color: #70757a;
+	margin-top: 15%;
+}
+
+.threeHourTemperature {
+	font-size: 15pt;
+	color: #262626;
+	margin-bottom: 10%;
 }
 
 .weatherInfo {
 	font-size: 10pt;
 	color: #70757a;
+	background-color: #e5f6fd;
 }
