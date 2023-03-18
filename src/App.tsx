@@ -7,6 +7,7 @@ import {
 } from './utils/general-functions'
 import WeatherDisplay from './components/WeatherDisplay'
 import ThreeHourDisplay from './components/ThreeHourDisplay'
+import Header from './components/Header'
 import './styles/app.css'
 
 function App() {
@@ -62,7 +63,6 @@ function App() {
 			`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`,
 			{
 				onSuccess: async (response: any) => {
-					console.log(response)
 					const condenceForecastObject = (forecast: any) => ({
 						time:
 							(new Date(forecast.dt * 1000).getHours() < 10 ? '0' : '') +
@@ -94,6 +94,7 @@ function App() {
 
 	return (
 		<div className="App">
+			<Header headerText="Säätutka" />
 			<WeatherDisplay weather={currentWeather} />
 			<div className="threeHourForecasts">
 				{threeHourForecasts

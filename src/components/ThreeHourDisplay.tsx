@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { getWeatherIcon } from '../utils/general-functions'
-import '../styles/ThreeHourDisplay.css'
+import '../styles/threeHourDisplay.css'
 
 interface forecastProps {
 	forecast: {
