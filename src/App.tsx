@@ -37,7 +37,12 @@ function App() {
 						temperature: Math.round(kelvinToCelsius(data.main.temp)),
 						humidity: data.main.humidity,
 						windSpeed: Number(data.wind.speed).toFixed(1),
-						rain: 'rain' in data ? data.rain['1h'] : 0,
+						rain:
+							'rain' in data
+								? data.rain['1h']
+								: 'snow' in data
+								? data.snow['1h']
+								: 0,
 						description: data.weather[0].description,
 						date: date,
 						time: hour + ':' + (minutes < 10 ? '0' + minutes : minutes),
@@ -57,6 +62,7 @@ function App() {
 			`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_API_KEY}`,
 			{
 				onSuccess: async (response: any) => {
+					console.log(response)
 					const condenceForecastObject = (forecast: any) => ({
 						time:
 							(new Date(forecast.dt * 1000).getHours() < 10 ? '0' : '') +
@@ -65,7 +71,12 @@ function App() {
 						temperature: Math.round(kelvinToCelsius(forecast.main.temp)),
 						windSpeed: Number(forecast.wind.speed).toFixed(1),
 						humidity: forecast.main.humidity,
-						rain: 'rain' in forecast ? forecast.rain['1h'] : 0,
+						rain:
+							'rain' in forecast
+								? forecast.rain['3h']
+								: 'snow' in forecast
+								? forecast.snow['3h']
+								: 0,
 						iconId: forecast.weather[0].icon,
 					})
 					const getFiveForecasts = limitFunction(condenceForecastObject, 5)
