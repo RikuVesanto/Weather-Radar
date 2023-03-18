@@ -30,7 +30,7 @@ function App() {
 						temperature: Math.round(kelvinToCelsius(data.main.temp)),
 						humidity: data.main.humidity,
 						windSpeed: data.wind.speed,
-						rain: data.rain,
+						rain: data.rain['1h'],
 						description: data.weather[0].description,
 						date: date,
 						time: hour + ':' + (minutes < 10 ? '0' + minutes : minutes),
