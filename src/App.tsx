@@ -40,9 +40,9 @@ function App() {
 						windSpeed: Number(data.wind.speed).toFixed(1),
 						rain:
 							'rain' in data
-								? data.rain['1h']
+								? Math.round(data.rain['1h'])
 								: 'snow' in data
-								? data.snow['1h']
+								? Math.round(data.snow['1h'])
 								: 0,
 						description: data.weather[0].description,
 						date: date,
@@ -73,9 +73,9 @@ function App() {
 						humidity: forecast.main.humidity,
 						rain:
 							'rain' in forecast
-								? forecast.rain['3h']
+								? Math.round(forecast.rain['3h'])
 								: 'snow' in forecast
-								? forecast.snow['3h']
+								? Math.round(forecast.snow['3h'])
 								: 0,
 						iconId: forecast.weather[0].icon,
 					})
