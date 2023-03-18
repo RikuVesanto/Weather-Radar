@@ -1,4 +1,22 @@
 /**
+ * Takes a function and returns a wrapper function that allows executing it only a specific amount of times
+ * @param {Function} func Any function
+ * @param {number} limit Amount of times the function can be executed
+ * @return {Function} An anonomyous function that can be called to execute the given function but only x amount of times
+ */
+function limitFunction(func, limit) {
+	let amount = limit
+	return (...args) => {
+		if (amount > 0) {
+			amount--
+			return func(...args)
+		} else {
+			return null
+		}
+	}
+}
+
+/**
  * Takes a kelvin temperature and converts it to celsius.
  * @param {number} kelvin Kelvin temperature value
  * @return {number} Celsius temperature value
@@ -35,4 +53,4 @@ function getNumbersSuffix(number) {
 		: number + 'th'
 }
 
-export { kelvinToCelsius, getWeatherIcon, getNumbersSuffix }
+export { limitFunction, kelvinToCelsius, getWeatherIcon, getNumbersSuffix }
