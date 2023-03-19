@@ -22,6 +22,9 @@ function limitFunction(func: any, limit: number): Function {
  * @return {number} Celsius temperature value
  */
 function kelvinToCelsius(kelvin: number): number {
+	if (kelvin < 0) {
+		throw RangeError("Kelvin can't go below 0 degrees")
+	}
 	return parseFloat(Number(kelvin - 273.15).toFixed(2))
 }
 
