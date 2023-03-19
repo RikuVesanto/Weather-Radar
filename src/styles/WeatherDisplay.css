@@ -9,18 +9,20 @@
 .description {
 	font-size: 13pt;
 	color: #70757a;
-	margin-left: 15%;
+	margin-left: 10%;
 }
 
 .temperature {
 	font-size: 26pt;
 	color: #262626;
+	margin-top: 20%;
 }
 
 .date {
 	font-size: 15pt;
 	color: #262626;
 	margin-left: 10%;
+	margin-top: 10%;
 	margin-bottom: 2pt;
 }
 
@@ -65,5 +67,5 @@
 }
 
 .bottomLeft {
-	width: 40%;
+	width: 38%;
 }
