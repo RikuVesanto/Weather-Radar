@@ -5,14 +5,14 @@ import axios from 'axios'
  * @param {*} request Request promise
  * @param {*} callbacks Callbacks object with functions onSuccess and onError
  */
-async function executeRequestCallbacks(request, callbacks) {
+async function executeRequestCallbacks(request: any, callbacks: any) {
 	return request
-		.then((response) => {
+		.then((response: any) => {
 			try {
 				callbacks.onSuccess(response)
 			} catch (callbackError) {}
 		})
-		.catch((error) => {
+		.catch((error: any) => {
 			try {
 				callbacks.onError(error.response)
 			} catch (callbackError) {}
@@ -24,7 +24,7 @@ async function executeRequestCallbacks(request, callbacks) {
  * @param {*} requestUrl The specific route that the request is made to.
  * @param {*} callbacks Object with optional callback functions named onSuccess, onError and onCompletion.
  */
-async function getData(requestUrl, callbacks) {
+async function getData(requestUrl: string, callbacks: any) {
 	await executeRequestCallbacks(axios.get(requestUrl), callbacks)
 }
 
