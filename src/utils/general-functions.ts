@@ -44,14 +44,16 @@ function getWeatherIcon(id: string): string {
  */
 function getNumbersSuffix(number: number): string {
 	const numberString: string = number.toString()
-	const lastDigit: string = numberString[numberString.length - 1]
-	return number === 11 || number === 12 || number === 13
+	const lastDigits: string =
+		(numberString.length > 1 ? numberString[numberString.length - 2] : null) +
+		numberString[numberString.length - 1]
+	return lastDigits === '11' || lastDigits === '12' || lastDigits === '13'
 		? number + 'th'
-		: lastDigit === '1'
+		: lastDigits[1] === '1'
 		? number + 'st'
-		: lastDigit === '2'
+		: lastDigits[1] === '2'
 		? number + 'nd'
-		: lastDigit === '3'
+		: lastDigits[1] === '3'
 		? number + 'rd'
 		: number + 'th'
 }
