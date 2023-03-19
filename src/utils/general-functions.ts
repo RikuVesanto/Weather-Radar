@@ -22,7 +22,7 @@ function limitFunction(func: any, limit: number): Function {
  * @return {number} Celsius temperature value
  */
 function kelvinToCelsius(kelvin: number): number {
-	return kelvin - 273.15
+	return parseFloat(Number(kelvin - 273.15).toFixed(2))
 }
 
 /**
