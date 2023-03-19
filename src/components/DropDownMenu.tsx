@@ -3,12 +3,16 @@ import '../styles/dropDownMenu.css'
 
 interface dropDownMenuProps {
 	labels: string[]
-	onClick: any
+	onChange: any
 }
 
-const DropDownMenu: FC<dropDownMenuProps> = ({ labels, onClick }) => {
+const DropDownMenu: FC<dropDownMenuProps> = ({ labels, onChange }) => {
 	return (
-		<select name="Dropdown Menu" id="dropdown" onClick={onClick}>
+		<select
+			name="Dropdown Menu"
+			id="dropdown"
+			onChange={(event) => onChange(event.currentTarget.value)}
+		>
 			{labels.map((label) => (
 				<option value={label} key={label}>
 					{label}

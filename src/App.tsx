@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { getData } from './utils/http-requests'
 import {
 	limitFunction,
@@ -14,7 +14,8 @@ import './styles/app.css'
 function App() {
 	const [currentWeather, setCurrentWeather] = useState<any>(null)
 	const [threeHourForecasts, setThreeHourForecasts] = useState<any>(null)
-	const cities = {
+	const [city, setCity] = useState<any>('Tampere')
+	const cities: any = {
 		Tampere: { lat: '61.4991', lon: '23.7871' },
 		Jyväskylä: { lat: '62.2415', lon: '25.7209' },
 		Kuopio: { lat: '62.8924', lon: '27.677' },
@@ -23,9 +24,9 @@ function App() {
 	const cityLabels = ['Kaikki kaupungit'].concat(Object.keys(cities))
 
 	useEffect(() => {
-		getCurrentWeather('61.4991', '23.7871')
-		getFiveThreeHourForecast('61.4991', '23.7871')
-	}, [])
+		getCurrentWeather(cities[city].lat, cities[city].lon)
+		getFiveThreeHourForecast(cities[city].lat, cities[city].lon)
+	}, [city])
 
 	async function getCurrentWeather(lat: String, lon: String) {
 		return await getData(
@@ -103,7 +104,7 @@ function App() {
 	return (
 		<div className="App">
 			<Header headerText="Säätutka" />
-			<DropDownMenu labels={cityLabels} onClick={() => null} />
+			<DropDownMenu labels={cityLabels} onChange={setCity} />
 			<WeatherDisplay weather={currentWeather} />
 			<div className="threeHourForecasts">
 				{threeHourForecasts
