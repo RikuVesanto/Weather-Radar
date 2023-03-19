@@ -12,20 +12,39 @@ import Header from './components/Header'
 import './styles/app.css'
 
 function App() {
+	const allCities = 'Kaikki kaupungit'
 	const [currentWeather, setCurrentWeather] = useState<any>(null)
 	const [threeHourForecasts, setThreeHourForecasts] = useState<any>(null)
-	const [city, setCity] = useState<any>('Tampere')
+	const [city, setCity] = useState<any>(allCities)
 	const cities: any = {
 		Tampere: { lat: '61.4991', lon: '23.7871' },
 		Jyväskylä: { lat: '62.2415', lon: '25.7209' },
 		Kuopio: { lat: '62.8924', lon: '27.677' },
 		Espoo: { lat: '60.25', lon: '24.6667' },
 	}
-	const cityLabels = ['Kaikki kaupungit'].concat(Object.keys(cities))
+
+	const cityLabels = [allCities].concat(Object.keys(cities))
 
 	useEffect(() => {
-		getCurrentWeather(cities[city].lat, cities[city].lon)
-		getFiveThreeHourForecast(cities[city].lat, cities[city].lon)
+		if (city === allCities) {
+			Promise.all(
+				Object.values(cities).map(async (city: any) => {
+					return await getCurrentWeather(city.lat, city.lon)
+				})
+			).then((weatherData) => setCurrentWeather(weatherData))
+			Promise.all(
+				Object.values(cities).map(async (city: any) => {
+					return await getFiveThreeHourForecast(city.lat, city.lon)
+				})
+			).then((forecasts) => setThreeHourForecasts(forecasts))
+		} else {
+			getCurrentWeather(cities[city].lat, cities[city].lon).then(
+				(weatherData) => setCurrentWeather(weatherData)
+			)
+			getFiveThreeHourForecast(cities[city].lat, cities[city].lon).then(
+				(forecasts) => setThreeHourForecasts(forecasts)
+			)
+		}
 	}, [city])
 
 	async function getCurrentWeather(lat: String, lon: String) {
@@ -58,7 +77,7 @@ function App() {
 						time: hour + ':' + (minutes < 10 ? '0' + minutes : minutes),
 						iconId: data.weather[0].icon,
 					}
-					setCurrentWeather(parsedWeather)
+					return parsedWeather
 				},
 				onError: (error: Error) => {
 					console.log(error)
@@ -92,7 +111,7 @@ function App() {
 					const forecasts = response.data.list
 						.map((forecast: any) => getFiveForecasts(forecast))
 						.filter((forecast: any) => forecast != null)
-					setThreeHourForecasts(forecasts)
+					return forecasts
 				},
 				onError: (error: Error) => {
 					console.log(error)
@@ -101,18 +120,47 @@ function App() {
 		)
 	}
 
+	function createWeatherDisplays() {
+		if (
+			city === allCities &&
+			currentWeather &&
+			threeHourForecasts &&
+			Array.isArray(currentWeather) &&
+			Array.isArray(threeHourForecasts[0])
+		) {
+			return currentWeather && threeHourForecasts
+				? currentWeather.map((cityWeather: any, index: number) => (
+						<div key={index}>
+							<WeatherDisplay weather={cityWeather} key={cityWeather.name} />
+							<div className="threeHourForecasts">
+								{threeHourForecasts[index].map((forecast: any) => (
+									<ThreeHourDisplay forecast={forecast} key={forecast.time} />
+								))}
+							</div>
+						</div>
+				  ))
+				: null
+		} else {
+			return currentWeather ? (
+				<div>
+					<WeatherDisplay weather={currentWeather} key={currentWeather.name} />
+					<div className="threeHourForecasts">
+						{threeHourForecasts
+							? threeHourForecasts.map((forecast: any) => (
+									<ThreeHourDisplay forecast={forecast} key={forecast.time} />
+							  ))
+							: null}
+					</div>
+				</div>
+			) : null
+		}
+	}
+
 	return (
 		<div className="App">
 			<Header headerText="Säätutka" />
 			<DropDownMenu labels={cityLabels} onChange={setCity} />
-			<WeatherDisplay weather={currentWeather} />
-			<div className="threeHourForecasts">
-				{threeHourForecasts
-					? threeHourForecasts.map((forecast: any) => (
-							<ThreeHourDisplay forecast={forecast} key={forecast.time} />
-					  ))
-					: null}
-			</div>
+			{createWeatherDisplays()}
 		</div>
 	)
 }

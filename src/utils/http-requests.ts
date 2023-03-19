@@ -9,7 +9,7 @@ async function executeRequestCallbacks(request: any, callbacks: any) {
 	return request
 		.then((response: any) => {
 			try {
-				callbacks.onSuccess(response)
+				return callbacks.onSuccess(response)
 			} catch (callbackError) {}
 		})
 		.catch((error: any) => {
@@ -25,7 +25,7 @@ async function executeRequestCallbacks(request: any, callbacks: any) {
  * @param {*} callbacks Object with optional callback functions named onSuccess, onError and onCompletion.
  */
 async function getData(requestUrl: string, callbacks: any) {
-	await executeRequestCallbacks(axios.get(requestUrl), callbacks)
+	return await executeRequestCallbacks(axios.get(requestUrl), callbacks)
 }
 
 export { getData }
