@@ -1,0 +1,10 @@
+.dropDown {
+	width: 100%;
+	height: 50px;
+	border-radius: 5px;
+	border: 1pt solid #e6e6e6;
+	font-size: 13pt;
+	color: #262626;
+	background-color: #ffffff;
+	text-indent: 10px;
+}

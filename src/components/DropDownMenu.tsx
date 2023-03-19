@@ -9,6 +9,7 @@ interface dropDownMenuProps {
 const DropDownMenu: FC<dropDownMenuProps> = ({ labels, onChange }) => {
 	return (
 		<select
+			className="dropDown"
 			name="Dropdown Menu"
 			id="dropdown"
 			onChange={(event) => onChange(event.currentTarget.value)}

@@ -159,7 +159,9 @@ function App() {
 	return (
 		<div className="App">
 			<Header headerText="Säätutka" />
-			<DropDownMenu labels={cityLabels} onChange={setCity} />
+			<div className="dropDownContainer">
+				<DropDownMenu labels={cityLabels} onChange={setCity} />
+			</div>
 			{createWeatherDisplays()}
 		</div>
 	)
