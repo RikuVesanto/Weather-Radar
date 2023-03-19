@@ -7,12 +7,20 @@ import {
 } from './utils/general-functions'
 import WeatherDisplay from './components/WeatherDisplay'
 import ThreeHourDisplay from './components/ThreeHourDisplay'
+import DropDownMenu from './components/DropDownMenu'
 import Header from './components/Header'
 import './styles/app.css'
 
 function App() {
 	const [currentWeather, setCurrentWeather] = useState<any>(null)
 	const [threeHourForecasts, setThreeHourForecasts] = useState<any>(null)
+	const cities = {
+		Tampere: { lat: '61.4991', lon: '23.7871' },
+		Jyväskylä: { lat: '62.2415', lon: '25.7209' },
+		Kuopio: { lat: '62.8924', lon: '27.677' },
+		Espoo: { lat: '60.25', lon: '24.6667' },
+	}
+	const cityLabels = ['Kaikki kaupungit'].concat(Object.keys(cities))
 
 	useEffect(() => {
 		getCurrentWeather('61.4991', '23.7871')
@@ -95,6 +103,7 @@ function App() {
 	return (
 		<div className="App">
 			<Header headerText="Säätutka" />
+			<DropDownMenu labels={cityLabels} onClick={() => null} />
 			<WeatherDisplay weather={currentWeather} />
 			<div className="threeHourForecasts">
 				{threeHourForecasts
