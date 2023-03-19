@@ -43,6 +43,9 @@ function getWeatherIcon(id: string): string {
  * @return {string} The number with its suffix
  */
 function getNumbersSuffix(number: number): string {
+	if (number < 1) {
+		throw RangeError("Zero and negative numbers don't have suffixes")
+	}
 	const numberString: string = number.toString()
 	const lastDigits: string =
 		(numberString.length > 1 ? numberString[numberString.length - 2] : null) +
