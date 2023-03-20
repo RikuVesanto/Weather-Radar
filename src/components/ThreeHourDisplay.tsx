@@ -19,7 +19,7 @@ const ThreeHourDisplay: FC<forecastProps> = ({ forecast }) => {
 			<p className="threeHourTime">{forecast.time}</p>
 			<img
 				className="icon"
-				src={getWeatherIcon(forecast.iconId)}
+				src={forecast.iconId ? getWeatherIcon(forecast.iconId) : ''}
 				alt="Weather icon"
 			></img>
 			<p className="threeHourTemperature">{forecast.temperature}°C</p>

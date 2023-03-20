@@ -25,7 +25,10 @@ const WeatherDisplay: FC<weatherProps> = ({ weather }) => {
 					<p className="description">{weather.description}</p>
 				</div>
 				<div className="topRight">
-					<img src={getWeatherIcon(weather.iconId)} alt="Weather icon"></img>
+					<img
+						src={weather.iconId ? getWeatherIcon(weather.iconId) : ''}
+						alt="Weather icon"
+					></img>
 					<p className="temperature">{weather.temperature}°C</p>
 				</div>
 			</div>
