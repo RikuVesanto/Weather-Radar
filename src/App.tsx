@@ -138,19 +138,22 @@ function App() {
 					</div>
 				</div>
 			))
-		} else {
-			return currentWeather ? (
+		} else if (
+			currentWeather &&
+			threeHourForecasts &&
+			!Array.isArray(currentWeather) &&
+			!Array.isArray(threeHourForecasts[0])
+		) {
+			return (
 				<div>
 					<WeatherDisplay weather={currentWeather} key={currentWeather.name} />
 					<div className="threeHourForecasts">
-						{threeHourForecasts
-							? threeHourForecasts.map((forecast: any) => (
-									<ThreeHourDisplay forecast={forecast} key={forecast.time} />
-							  ))
-							: null}
+						{threeHourForecasts.map((forecast: any) => (
+							<ThreeHourDisplay forecast={forecast} key={forecast.time} />
+						))}
 					</div>
 				</div>
-			) : null
+			)
 		}
 	}
 
