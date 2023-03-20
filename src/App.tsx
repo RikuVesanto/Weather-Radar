@@ -120,7 +120,7 @@ function App() {
 		)
 	}
 
-	function createWeatherDisplays() {
+	function createWeatherDisplays(currentWeather: any, threeHourForecasts: any) {
 		if (
 			city === allCities &&
 			currentWeather &&
@@ -128,18 +128,16 @@ function App() {
 			Array.isArray(currentWeather) &&
 			Array.isArray(threeHourForecasts[0])
 		) {
-			return currentWeather && threeHourForecasts
-				? currentWeather.map((cityWeather: any, index: number) => (
-						<div key={index}>
-							<WeatherDisplay weather={cityWeather} key={cityWeather.name} />
-							<div className="threeHourForecasts">
-								{threeHourForecasts[index].map((forecast: any) => (
-									<ThreeHourDisplay forecast={forecast} key={forecast.time} />
-								))}
-							</div>
-						</div>
-				  ))
-				: null
+			return currentWeather.map((cityWeather: any, index: number) => (
+				<div key={index}>
+					<WeatherDisplay weather={cityWeather} key={cityWeather.name} />
+					<div className="threeHourForecasts">
+						{threeHourForecasts[index].map((forecast: any) => (
+							<ThreeHourDisplay forecast={forecast} key={forecast.time} />
+						))}
+					</div>
+				</div>
+			))
 		} else {
 			return currentWeather ? (
 				<div>
@@ -163,7 +161,7 @@ function App() {
 				<div className="dropDownContainer">
 					<DropDownMenu labels={cityLabels} onChange={setCity} />
 				</div>
-				{createWeatherDisplays()}
+				{createWeatherDisplays(currentWeather, threeHourForecasts)}
 			</div>
 		</div>
 	)
